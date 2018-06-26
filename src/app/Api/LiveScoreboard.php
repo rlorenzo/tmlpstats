@@ -25,6 +25,7 @@ class LiveScoreboard extends AuthenticatedApiBase
             $scoreboard = Domain\Scoreboard::fromArray($reportData);
         }
 
+
         $tempScores = $this->getTempScoreboardForCenter($center->id, $report->reportingDate);
         $updatedAt = $report->submittedAt;
 

@@ -2,17 +2,11 @@
 
 @section('content')
     <h2>{{ $statsReport->center->name }}</h2>
-    <div class="row">
-        <div class="col-xs-12">
-            <p class="bg-info">This is a test for our foray into mobile device support. Please email us and let us know if there are any problems on your specific device; and also let us know if there's a piece of information you'd like to see here!
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-sm-11">
             <h3>Current Stats</h3>
-            @include('reports.centergames.week', ['reportData' => $liveData->toArray(), 'liveScoreboard'=>true])
-            Updated {{ $liveData->meta['updatedAt']->timezone($statsReport->center->timezone) }}
+            @include('reports.centergames.week', ['reportData' => $liveData->toArray(), 'liveScoreboard'=>false])
         </div>
     </div>
     <div class="row">

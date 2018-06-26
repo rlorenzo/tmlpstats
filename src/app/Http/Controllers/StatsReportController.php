@@ -338,9 +338,17 @@ class StatsReportController extends Controller
 
     public function getMobileSummary(Models\StatsReport $statsReport)
     {
-        $data = $this->getSummaryPageData($statsReport, true);
+        $data = $this->getSummaryPageData($statsReport, false);
         $data['skip_navbar'] = true;
-        $data['liveScoreboard'] = true;
+        $data['liveScoreboard'] = false;
+
+        echo $statsReport->reportingDate;
+
+        $scoreboard = App::make('TmlpStats\Api\Submission\Scoreboard');
+        $data['liveData'] = $scoreboard->allForCenter($statsReport->center, $statsReport->reportingDate, true, true)->getWeek($statsReport->reportingDate);
+
+//        dd($data['liveData']);
+
 
         return view('statsreports.details.mobile_summary', $data);
     }
